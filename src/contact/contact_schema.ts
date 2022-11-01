@@ -9,7 +9,7 @@ export class Contact{
     contact_name: string;
 
     @Prop({required: true, unique:true})
-    mobile_number: number;
+    mobile_number: string;
 
     @Prop({default: "Nothin About User"})
     about: string;
