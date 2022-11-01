@@ -7,6 +7,8 @@ export type MessageDocument = Message & Document
 export class Message{
 
     @Prop()
+    tt:string
+    @Prop()
     userId: string;
 
     @Prop()
