@@ -23,20 +23,20 @@ export class ContactController {
   //Find Contact
   @Get('find_single_contact')
   async getOne(@Query('id') id: any){
-    const cont = await this.ContactService.findOneContact({id});
+    const cont = await this.ContactService.findOneContact(id);
     console.log(cont);
     return cont;
   }
 
   //Find And Update Contact Information
   @Patch('update_contact/:id')
-  async updateRoom(@Param('id') id: any, @Body() ContactDto: ContactDto){
-    return await this.ContactService.updateOneContact({id}, {...ContactDto})
+  async updateContact(@Param('id') id: string, @Body() ContactDto: ContactDto){
+    return await this.ContactService.updateOneContact(id, {...ContactDto})
   }
 
   //Delete Single Contact
   @Delete('delete_contact/:id')
-  async deleteOneHotel(@Param('id') id: string){
+  async deleteOneContact(@Param('id') id: string){
     console.log("Contact Deleted...!!!")
     return await this.ContactService.deleteOneContact(id);
   }

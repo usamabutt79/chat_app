@@ -5,10 +5,10 @@ export type CreateGroupDocument = CreateGroup & Document
 @Schema()
 export class CreateGroup{
 
-    @Prop()
+    @Prop({default: "1234567890"})
     UserId: string;
 
-    @Prop({required:true, maxlength: 15, minlength: 5})
+    @Prop({required:true, maxlength: 25, minlength: 5})
     group_name: string;
 
     @Prop({default: "Group Description Not Added Yet!!!"})

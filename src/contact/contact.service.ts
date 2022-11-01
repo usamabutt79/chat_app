@@ -15,15 +15,15 @@ export class ContactService {
     }
 
     //Find Single Contact
-    async findOneContact(id: any){
-        const cont = await this.ContactModel.findOne({id});
+    async findOneContact(id: string){
+        const cont = await this.ContactModel.findOne({_id:id});
         return cont;
     }
 
     //Update Contact Information
-    async updateOneContact(id: any,{contact_name,mobile_number,about,contact_dp}: ContactDto){
-        const updates = await this.ContactModel.findOneAndUpdate({id},{contact_name,mobile_number,about,contact_dp})
-        return await this.findOneContact(updates?._id)
+    async updateOneContact(id: string,{contact_name,mobile_number,about,contact_dp}: any){
+        const updates = await this.ContactModel.findByIdAndUpdate(id,{contact_name,mobile_number,about,contact_dp})
+        return await this.findOneContact(id)
     }
 
     //Delete Single Contact
