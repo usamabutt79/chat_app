@@ -15,8 +15,8 @@ export class Message{
     @Prop()
     groupId: string;
 
-    @Prop({default: "Empty"})
-    msg_box: string;
+    @Prop({type: mongoose.Schema.Types.Mixed})
+    msg_box:{text:string,to:string};
 
     @Prop()
     deliver_at: string;
