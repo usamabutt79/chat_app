@@ -3,11 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateGroup, CreateGroupDocument } from './create_group_schema';
 import { CreateGroupDto } from './Create_Group_Dto'
+import { User, UserDocument } from 'src/user/user.schema';
 
 @Injectable()
 export class CreateGroupService {
-    constructor(@InjectModel(CreateGroup.name) private CreateGroupModel: Model<CreateGroupDocument>){}
-
+    constructor(
+    @InjectModel(CreateGroup.name) private CreateGroupModel: Model<CreateGroupDocument>,
+    @InjectModel(User.name) private UserModel: Model<UserDocument>){}
     //Create New Group
     async createGroup(CreateGroupDto: CreateGroupDto){
         const group = await this.CreateGroupModel.create(CreateGroupDto)
@@ -16,7 +18,7 @@ export class CreateGroupService {
 
     //Find Single Group
     async findOneGroup(id: string){
-        const group = await this.CreateGroupModel.findOne({_id:id});
+        const group = await (await this.CreateGroupModel.findOne({_id:id})).populate('UserId','',this.UserModel);
         return group;
     }
 

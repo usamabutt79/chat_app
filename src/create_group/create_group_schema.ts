@@ -1,12 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import mongoose from 'mongoose';
+import { User } from 'src/user/user.schema';
 
 export type CreateGroupDocument = CreateGroup & Document
 
 @Schema()
 export class CreateGroup{
 
-    @Prop({default: "1234567890"})
-    UserId: string;
+    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'user'})
+    UserId: User;
 
     @Prop({required:true, maxlength: 25, minlength: 5})
     group_name: string;
