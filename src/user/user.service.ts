@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { Contact, ContactDocument } from 'src/contact/contact_schema';
 import { Twilio } from 'twilio';
 import { User, UserDocument } from './user.schema';
 import { UserDto } from './user_dto'
@@ -8,7 +9,10 @@ import { UserDto } from './user_dto'
 @Injectable()
 export class UserService {
     private twilioClient:Twilio
-    constructor(@InjectModel(User.name) private UserModel: Model<UserDocument>){
+    constructor(
+    @InjectModel(User.name) private UserModel: Model<UserDocument>,
+    @InjectModel(Contact.name) private ContactModel: Model<ContactDocument>
+    ){
         const id="ACf7a1b8fedd4f3b39d9da840cdec5d336"
         const token="50099e003698d4f926f225d2a0bf2a34"
         this.twilioClient=new Twilio(id,token)
@@ -42,6 +46,9 @@ export class UserService {
         return this.UserModel.findOneAndUpdate({mobile_number}, {password,is_verified})  
     }
 
+    async findone(id:any){
+        return this.UserModel.findOne(id).populate('contactId','',this.ContactModel)
+    }
 
 
 

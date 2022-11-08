@@ -20,7 +20,6 @@ export class GroupMembershipController {
       return e?.message;
     }
   }
-
   //Find Group Membership 
   @Get('find_single_group_membership/:id')
   async findGroupMembership(@Param('id') id: any){

@@ -1,14 +1,14 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { DataExchange } from 'aws-sdk';
-import { Date } from 'mongoose';
+import mongoose, { Date } from 'mongoose';
+import { User } from 'src/user/user.schema';
 
 export type GroupMembershipDocument = GroupMembership & Document
 
 @Schema({timestamps:true})
 export class GroupMembership{
 
-    @Prop({default: "user1234"})
-    userId: string;
+    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'user'})
+    UserId: User;
 
     @Prop({default: "grp123"})
     groupId: string;
