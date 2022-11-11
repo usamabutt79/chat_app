@@ -1,4 +1,4 @@
-import { Param } from "@nestjs/common";
+import { Body, Get, Param, Query } from "@nestjs/common";
 import { Logger } from "@nestjs/common/services";
 import { WebSocketGateway } from "@nestjs/websockets";
 import { ConnectedSocket, SubscribeMessage, WebSocketServer } from "@nestjs/websockets/decorators";
@@ -35,10 +35,10 @@ export class ChatGatewayPrivate {
     }
 
     //Get All Message
-    @SubscribeMessage('get_all_message/:friend_id')
-    async getAllMsg(@Param('friend_id') f_id: string, @ConnectedSocket() client: Socket) {
-        const msg = await this.MessageService.getAllMsg(f_id, client.id)
-    }
+    // @SubscribeMessage('get_all_message/:id')
+    // async getAllMsg(@Param('id') f_id: string, @ConnectedSocket() client: Socket) {
+    //     const msg = await this.MessageService.getAllMsg(f_id, client.id)
+    // }
 
     public handleDisconnect(contact: Socket) {
         Logger.warn(`User with Socket ${contact?.id} disconnected`)
@@ -52,5 +52,10 @@ export class ChatGatewayPrivate {
         const aa = this.arr.filter(mob => mob?.id == id)
         return (aa?.length) ? aa[0]?.mobile_number : undefined
     }
+
+    // @Get('get_all_msg')
+    // async GetAllMsg(@Body() msg_box:{to:string}){
+    //     return await this.MessageService.getAllMsg({to:msg_box.to})
+    // }
 
 }

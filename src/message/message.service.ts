@@ -15,8 +15,8 @@ export class MessageService {
     }
 
     //Get All Message
-    async getAllMsg(user_id:string,contactId:string){
-        return this.MessageModel.find({userId:user_id,contactId:contactId})
-    }
+    // async getAllMsg(msg_box:{to:string}){
+    //     return this.MessageModel.find({to: msg_box.to})
+    // }
 
 }

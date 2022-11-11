@@ -16,6 +16,7 @@ import { Contact, ContactSchema } from './contact/contact_schema';
 import { CreateGroup, CreateGroupSchema } from './create_group/create_group_schema';
 import { GroupMembership, GroupMembershipSchema } from './group_membership/group_membership_schema';
 import { Message, MessageSchema } from './message/message_schema';
+import { ChatGatewayPrivate } from './message/private_chat.gateways';
 
 @Module({
   imports: [MongooseModule.forRoot('mongodb+srv://usamabutt786:18134156-079@cluster0.ajmez0k.mongodb.net/Chat_App'),
@@ -25,6 +26,6 @@ import { Message, MessageSchema } from './message/message_schema';
     {name: GroupMembership.name, schema: GroupMembershipSchema},
     {name: Message.name, schema: MessageSchema}])],
   controllers: [AppController,UserController,ContactController,CreateGroupController,GroupMembershipController],
-  providers: [AppService,UserService,ContactService,CreateGroupService,MessageService,GroupMembershipService],
+  providers: [AppService,UserService,ContactService,CreateGroupService,MessageService,GroupMembershipService,ChatGatewayPrivate],
 })
 export class AppModule {}

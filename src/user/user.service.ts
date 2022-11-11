@@ -50,6 +50,8 @@ export class UserService {
         return this.UserModel.findOne(id).populate('contactId','',this.ContactModel)
     }
 
-
+    async UpdateContact({mobile_number, contactId}:any){
+        return this.UserModel.findOneAndUpdate({mobile_number}, {contactId})  
+    }
 
 }

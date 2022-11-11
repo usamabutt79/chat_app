@@ -45,4 +45,16 @@ export class UserController {
   async UpdatePassword(@Param('mobile_number') mobile_number:any, @Body() UserDto: Partial<UserDto>){
     return await this.UserService.SetNewPassword({mobile_number, ...UserDto})
   }
+
+  @Patch('update_contact/:mobile_number')
+  async UpdateContact(@Param('mobile_number') mobile_number:any, @Body() UserDto: Partial<UserDto>){
+    return await this.UserService.UpdateContact({mobile_number, ...UserDto})
+  }
+
+  @Get('get_user/:id')
+  async GetUser(@Param('id') id:string){
+    const user = await this.UserService.findone({id})
+    console.log(user)
+    return user
+  }
 }
