@@ -6,10 +6,10 @@ export type MessageDocument = Message & Document
 @Schema()
 export class Message{
 
-    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'user'})
+    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'User'})
     userId: string;
 
-    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'contact'})
+    @Prop({type:mongoose.Schema.Types.ObjectId, ref:'Contact'})
     contactId: string;
 
     @Prop({type:mongoose.Schema.Types.ObjectId, ref:'group'})
